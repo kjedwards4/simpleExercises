@@ -1,33 +1,24 @@
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        double kittenWeight;
-        double amountToFeedPerDay;
-        int age;
-        int timesPerDay = 0;
-        double amountPerFeeding;
+        int[] A = {1,0,1,1,0,0,0,1};
+        int i;
+        int flipCounter = 0;
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Please enter the weight of the kitten in ounces");
-        kittenWeight = in.nextDouble();
-        System.out.println("Please enter the age in weeks of the kitten");
-        age = in.nextInt();
 
-        amountToFeedPerDay = (kittenWeight/4)*30;
-
-        if(age<=2){
-            timesPerDay = 12;
-        }else if(age>2 && age<=5){
-            timesPerDay = 6;
-        }else{
-            System.out.println("This kitten does not need to be bottle fed");
-            System.exit(0);
+        for(i = 0; i<A.length - 1; i++){
+            if (A[i] == A[i + 1] && A[i] == 1) {
+                A[i+1] = 0;
+                System.out.println(Arrays.toString(A));
+                flipCounter++;
+            } else if(A[i] == A[i + 1] && A[i] == 0){
+                A[i+1] = 1;
+                System.out.println(Arrays.toString(A));
+                flipCounter++;
+            }
         }
+        System.out.println("Minimum number of flips: " + flipCounter);
 
-        amountPerFeeding = amountToFeedPerDay / timesPerDay;
-
-        System.out.println("This kitten should be fed " + amountToFeedPerDay + "mL of formula per day. They should be " +
-                "fed " + amountPerFeeding + "mL " + timesPerDay + " times a day.");
     }
 }
